@@ -39,11 +39,15 @@ export default function Home() {
         </div>
       </Tabs>
       <div>
-        <div className="h-32" style={{ backgroundColor: color.toHex() }}></div>
-        <div className="mt-4 space-y-2 text-center">
-          <p><strong>RGB:</strong> {color.toRgbString()}</p>
-          <p><strong>HSL:</strong> hsl({h}, {s}%, {l}%)</p>
-          <p><strong>Hex:</strong> {color.toHex()}</p>
+        <div
+          style={{ backgroundColor: color.toHex() }}
+          className="mt-4 space-y-2 text-center rounded p-4 py-8 flex justify-center items-center"
+        >
+          <div className="bg-background/80 rounded px-4">
+            <p><strong>RGB:</strong> {color.toRgbString()}</p>
+            <p><strong>HSL:</strong> hsl({h}, {s}%, {l}%)</p>
+            <p><strong>Hex:</strong> {color.toHex()}</p>
+          </div>
         </div>
       </div>
     </main>
