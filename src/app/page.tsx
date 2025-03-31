@@ -1,103 +1,91 @@
-import Image from "next/image";
+'use client'
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { colord, HslColor, RgbColor } from 'colord'
+import { SetStateAction, useState } from 'react'
+
+type ColorState = {
+  source: 'hsl' | 'rgb'
+  hsl: HslColor
+  rgb: RgbColor
+}
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [state, setState] = useState<ColorState>({
+    source: 'hsl' as 'hsl' | 'rgb',
+    hsl: { h: 0, s: 0, l: 0 },
+    rgb: { r: 0, g: 0, b: 0 },
+  })
+  const { h, s, l } = state.hsl
+  const color = state.source === 'hsl' ?
+    colord(state.hsl) :
+    colord(state.rgb)
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <main className="flex flex-col items-center py-12">
+      <h1 className="text-4xl font-bold">Color Picker</h1>
+      <Tabs defaultValue='hsl'>
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="rgb">RGB</TabsTrigger>
+          <TabsTrigger value="hsl">HSL</TabsTrigger>
+        </TabsList>
+        <TabsContent value="rgb">
+          <ColorPickerRGB value={state} onChange={setState} />
+        </TabsContent>
+        <TabsContent value="hsl">
+          <ColorPickerHSL value={state} onChange={setState} />
+        </TabsContent>
+      </Tabs>
+      <div>
+        <div className="mt-4 space-y-2 text-center">
+          <p><strong>RGB:</strong> {color.toRgbString()}</p>
+          <p><strong>HSL:</strong> hsl({h}, {s}%, {l}%)</p>
+          <p><strong>Hex:</strong> {color.toHex()}</p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+    </main>
+  )
+}
+
+const ColorPickerRGB: React.FC<{
+  value: ColorState, onChange: (newState: SetStateAction<ColorState>) => void
+}> = ({ value, onChange }) => {
+  const { r, g, b } = value.rgb
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    onChange(prev => ({
+      ...prev, source: 'rgb' as const,
+      rgb: { ...prev.rgb, [name]: +value },
+      hsl: colord({ ...prev.rgb, [name]: +value }).toHsl()
+    }))
+  }
+  return (
+    <div className="grid grid-cols-3 gap-4">
+      <input name="r" type="range" min="0" max="255" value={r} onChange={handleChange} />
+      <input name="g" type="range" min="0" max="255" value={g} onChange={handleChange} />
+      <input name="b" type="range" min="0" max="255" value={b} onChange={handleChange} />
     </div>
-  );
+  )
+}
+
+const ColorPickerHSL: React.FC<{
+  value: ColorState, onChange: (newState: SetStateAction<ColorState>) => void
+}> = ({ value, onChange }) => {
+  const { h, s, l } = value.hsl
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    onChange(prev => ({
+      ...prev, source: 'hsl' as const,
+      hsl: { ...prev.hsl, [name]: +value },
+      rgb: colord({ ...prev.hsl, [name]: +value }).toRgb()
+    }))
+  }
+
+  return (
+    <div className="grid grid-cols-3 gap-4">
+      <input name='h' type="range" min="0" max="360" value={h} onChange={handleChange} />
+      <input name='s' type="range" min="0" max="100" value={s} onChange={handleChange} />
+      <input name='l' type="range" min="0" max="100" value={l} onChange={handleChange} />
+    </div>
+  )
 }
