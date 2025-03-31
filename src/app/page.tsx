@@ -67,11 +67,11 @@ const ColorPickerRGB: React.FC<{
     }))
   }
   return (
-    <div className="flex flex-col">
-      <label htmlFor="rgb-r-range" className="flex justify-between">R (Red) <span className="inline-flex h-6 w-6" style={{ backgroundColor: `rgb(${r},0,0)` }} /></label>
+    <div className="flex flex-col" style={{ '--r': r, '--g': g, '--b': b } as React.CSSProperties}>
+      <label htmlFor="rgb-r-range" className="flex justify-between">R (Red): {r}</label>
       <input
         id="rgb-r-range"
-        className="mb-4 appearance-none mt-1 w-full h-2 rounded-lg"
+        className="mb-4 appearance-none mt-1 w-full h-2 rounded-lg thumb-red"
         name="r"
         type="range"
         min="0"
@@ -82,10 +82,10 @@ const ColorPickerRGB: React.FC<{
           background: 'linear-gradient(to right, black, red)',
         }}
       />
-      <label htmlFor="rgb-g-range" className="flex justify-between">G (Green) <span className="inline-flex h-6 w-6" style={{ backgroundColor: `rgb(0,${g},0)` }} /></label>
+      <label htmlFor="rgb-g-range" className="flex justify-between">G (Green): {g}</label>
       <input
         id="rgb-g-range"
-        className="mb-4 appearance-none mt-1 w-full h-2 rounded-lg"
+        className="mb-4 appearance-none mt-1 w-full h-2 rounded-lg thumb-green"
         name="g"
         type="range"
         min="0"
@@ -96,10 +96,10 @@ const ColorPickerRGB: React.FC<{
           background: 'linear-gradient(to right, black, green)',
         }}
       />
-      <label htmlFor="rgb-b-range" className="flex justify-between">B (Blue) <span className="inline-flex h-6 w-6" style={{ backgroundColor: `rgb(0,0,${b})` }} /></label>
+      <label htmlFor="rgb-b-range" className="flex justify-between">B (Blue): {b}</label>
       <input
         id="rgb-b-range"
-        className="mb-4 appearance-none mt-1 w-full h-2 rounded-lg"
+        className="mb-4 appearance-none mt-1 w-full h-2 rounded-lg thumb-blue"
         name="b"
         type="range"
         min="0"
@@ -128,11 +128,11 @@ const ColorPickerHSL: React.FC<{
   }
 
   return (
-    <div className="flex flex-col">
-      <label htmlFor="hsl-h-range" className="flex justify-between">H (Hue) <span className="inline-flex h-6 w-6" style={{ backgroundColor: `hsl(${h},100%,50%)` }} /></label>
+    <div className="flex flex-col" style={{ '--h': h, '--s': s + '%', '--l': l + '%' } as React.CSSProperties}>
+      <label htmlFor="hsl-h-range" className="flex justify-between">H (Hue): {h}</label>
       <input
         id="hsl-h-range"
-        className="mb-4 appearance-none mt-1 w-full h-2 rounded-lg"
+        className="mb-4 appearance-none mt-1 w-full h-2 rounded-lg thumb-hue"
         name="h"
         type="range"
         min="0"
@@ -143,10 +143,10 @@ const ColorPickerHSL: React.FC<{
           background: 'linear-gradient(to right, red, yellow, lime, cyan, blue, magenta, red)',
         }}
       />
-      <label htmlFor="hsl-s-range" className="flex justify-between">S (Saturation) <span className="inline-flex h-6 w-6" style={{ backgroundColor: `hsl(${h},${s}%,50%)` }} /></label>
+      <label htmlFor="hsl-s-range" className="flex justify-between">S (Saturation): {s}%</label>
       <input
         id="hsl-s-range"
-        className="mb-4 appearance-none mt-1 w-full h-2 rounded-lg"
+        className="mb-4 appearance-none mt-1 w-full h-2 rounded-lg thumb-saturation"
         name="s"
         type="range"
         min="0"
@@ -157,10 +157,10 @@ const ColorPickerHSL: React.FC<{
           background: `linear-gradient(to right, hsl(${h},0%,50%), hsl(${h},100%,50%))`,
         }}
       />
-      <label htmlFor="hsl-l-range" className="flex justify-between">L (Lightness) <span className="inline-flex h-6 w-6" style={{ backgroundColor: `hsl(${h},100%,${l}%)` }} /></label>
+      <label htmlFor="hsl-l-range" className="flex justify-between">L (Lightness): {l}%</label>
       <input
         id="hsl-l-range"
-        className="mb-4 appearance-none mt-1 w-full h-2 rounded-lg"
+        className="mb-4 appearance-none mt-1 w-full h-2 rounded-lg thumb-lightness"
         name="l"
         type="range"
         min="0"
