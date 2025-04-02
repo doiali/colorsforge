@@ -21,7 +21,7 @@ export default function Home() {
       <h1 className="text-4xl font-bold mb-4 text-center">Colorbitz</h1>
       <p className="text-center text-lg mb-4">Comprehensive color picker and color converter tools for modern color spaces</p>
       <Tabs defaultValue='srgb'>
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="w-full">
           {pickers.map((picker) => (
             <TabsTrigger key={picker.name} value={picker.name}>
               {picker.label}
