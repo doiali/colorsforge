@@ -5,8 +5,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export type PickerMode = 'hsl' | 'srgb' | 'hsv' | 'lab' | 'lch' | 'xyz' | 'hwb' | 'oklab' | 'oklch'
-export const pickerModes = ['hsl', 'srgb', 'hsv', 'lab', 'lch', 'xyz', 'hwb', 'oklab', 'oklch'] as const
+export type PickerMode = 'hsl' | 'srgb' | 'lab' | 'lch' | 'xyz' | 'hwb' | 'oklab' | 'oklch'
+export const pickerModes = ['hsl', 'srgb', 'lab', 'lch', 'xyz', 'hwb', 'oklab', 'oklch'] as const
 export const pickers: {
   name: PickerMode
   label: string
@@ -48,6 +48,22 @@ export const pickers: {
         {
           name: 'l', label: 'Lightness', min: 0, max: 100, step: 1,
           getGradient: (value: number[]) => `linear-gradient(to right, hsl(${value[0]}, ${value[1]}%, 0%), hsl(${value[0]}, ${value[1]}%, 50%), hsl(${value[0]}, ${value[1]}%, 100%))`,
+        },
+      ]
+    },
+    {
+      name: 'hwb', label: 'HWB', fields: [
+        {
+          name: 'h', label: 'Hue', min: 0, max: 360, step: 1,
+          getGradient: (value) => `linear-gradient(to right, ${[...Array(361).keys()].map((hue) => `hwb(${hue} ${value[1]} ${value[2]})`).join(', ')})`,
+        },
+        {
+          name: 'w', label: 'Whiteness', min: 0, max: 100, step: 1,
+          getGradient: (value: number[]) => `linear-gradient(to right, hwb(${value[0]} 0 ${value[2]}), hwb(${value[0]} 100 ${value[2]}))`,
+        },
+        {
+          name: 'b', label: 'Blackness', min: 0, max: 100, step: 1,
+          getGradient: (value: number[]) => `linear-gradient(to right, hwb(${value[0]} ${value[1]} 0), hwb(${value[0]} ${value[1]} 100%))`,
         },
       ]
     },

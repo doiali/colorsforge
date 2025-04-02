@@ -2,9 +2,9 @@
 
 import ColorPicker, { ColorState, getColorsCoords } from '@/components/color-picker'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { pickers } from '@/lib/utils'
 import Color from 'colorjs.io'
 import { useState } from 'react'
-
 
 export default function Home() {
   const [state, setState] = useState<ColorState>({
@@ -21,17 +21,19 @@ export default function Home() {
       <h1 className="text-4xl font-bold mb-4 text-center">Colorbitz</h1>
       <p className="text-center text-lg mb-4">Comprehensive color picker and color converter tools for modern color spaces</p>
       <Tabs defaultValue='srgb'>
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="srgb">RGB</TabsTrigger>
-          <TabsTrigger value="hsl">HSL</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-3">
+          {pickers.map((picker) => (
+            <TabsTrigger key={picker.name} value={picker.name}>
+              {picker.label}
+            </TabsTrigger>
+          ))}
         </TabsList>
         <div className="pt-6">
-          <TabsContent value="srgb">
-            <ColorPicker state={state} mode='srgb' onChange={setState} />
-          </TabsContent>
-          <TabsContent value="hsl">
-            <ColorPicker state={state} mode='hsl' onChange={setState} />
-          </TabsContent>
+          {pickers.map((picker) => (
+            <TabsContent key={picker.name} value={picker.name}>
+              <ColorPicker state={state} mode={picker.name} onChange={setState} />
+            </TabsContent>
+          ))}
         </div>
       </Tabs>
       <div>
