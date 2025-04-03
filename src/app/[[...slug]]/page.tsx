@@ -1,8 +1,10 @@
+import { colorPickers, PickerMode } from '@/components/color-pickers'
 import MainPanel from '@/components/main-panel'
-import { colorPickers } from '@/components/color-pickers'
+import { notFound } from 'next/navigation'
+
+const pickerModes = colorPickers.map(({ name }) => name)
 
 export const generateStaticParams = async () => {
-  const pickerModes = colorPickers.map(p => p.name)
   const routes: { slug: string[] }[] = [{ slug: [] }]
   for (const mode1 of pickerModes) {
     routes.push({ slug: [mode1] })
@@ -17,7 +19,16 @@ export const generateStaticParams = async () => {
 
 export const dynamicParams = false
 
-export default async function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ slug: PickerMode[] }>
+}) {
+  const { slug = [] } = await params
+  const [mode1 = 'hsl', mode2 = 'srgb'] = slug
+  const isValid = pickerModes.includes(mode1) && pickerModes.includes(mode2)
+  if (!isValid)
+    return notFound()
 
   return (
     <MainPanel />
