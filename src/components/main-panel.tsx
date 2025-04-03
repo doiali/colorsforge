@@ -9,7 +9,7 @@ import Link from 'next/link'
 export default function MainPanel() {
   const { color: state, setColor: setState, mode1, mode2 } = useColor()
   return (
-    <main className="flex flex-col py-12 container max-w-2xl mx-auto px-4">
+    <main className="flex flex-col py-12 max-w-2xl mx-auto px-4">
       <h1 className="text-4xl font-bold mb-4 text-center">Colorbitz</h1>
       <p className="text-center text-lg mb-4">Comprehensive color picker and color converter tools for modern color spaces</p>
       <TabNav>
