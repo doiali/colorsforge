@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState } from 'react'
 import Color from 'colorjs.io'
-import { ColorState, getColorsCoords } from './color-picker'
+import { ColorState } from './color-picker'
 import { PickerMode } from '@/lib/pickers'
 import { useParams } from 'next/navigation'
 
@@ -15,9 +15,7 @@ const ColorContext = createContext<{
   mode2: PickerMode
 }>({
   state: {
-    source: 'hsl',
     color: defaultColor,
-    ...getColorsCoords(defaultColor),
   },
   mode1: 'hsl',
   mode2: 'srgb',
@@ -26,9 +24,7 @@ const ColorContext = createContext<{
 
 export const ColorProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, setState] = useState<ColorState>({
-    source: 'hsl',
     color: defaultColor,
-    ...getColorsCoords(defaultColor),
   })
   const { slug = [] } = useParams<{ slug: PickerMode[] }>()
   const mode1 = slug[0] ?? 'hsl'

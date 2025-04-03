@@ -1,21 +1,12 @@
 'use client'
 
-import { PickerMode, pickerModes, pickers } from '@/lib/pickers'
+import { PickerMode, pickers } from '@/lib/pickers'
 import Color, { Coords } from 'colorjs.io'
 import { SetStateAction } from 'react'
 import { ColorRange } from './ui/color-range'
 
 type ColorState = {
-  source: PickerMode
   color: Color
-} & Record<PickerMode, [number, number, number]>
-
-export const getColorsCoords = (newColor: Color) => {
-  return pickerModes.map((mode) => {
-    return {
-      [mode]: newColor.to(mode).coords,
-    }
-  }).reduce((acc, curr) => ({ ...acc, ...curr }), {}) as Record<PickerMode, [number, number, number]>
 }
 
 const ColorPicker: React.FC<{
@@ -23,19 +14,16 @@ const ColorPicker: React.FC<{
   onChange: (newState: SetStateAction<ColorState>) => void,
   mode: PickerMode
 }> = ({ state, onChange, mode }) => {
-  const channels = state[mode]
-
+  const { color } = state
+  const channels = color.to(mode).coords as Coords
   const handleChange = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
     onChange(prev => {
-      const newCoords = channels.map((v, i) => (i === index ? +value : v)) as Coords
+      const newCoords = prev.color.to(mode).coords.map((v, i) => (i === index ? +value : v)) as Coords
       const newColor = new Color(mode, newCoords)
       return ({
-        ...prev,
-        ...getColorsCoords(newColor),
         color: newColor,
         source: mode,
-        [mode]: newCoords,
       })
     })
   }
@@ -55,14 +43,13 @@ const ColorPicker: React.FC<{
         const { name, label, min, max, step } = field
         const value = channels[index]
         const gradient = field.getGradient?.(channels)
-        console.log(name, gradient)
         return (
           <div key={name} className="mb-4">
-            <label htmlFor={`${state.source}-${name}-range`} className="flex justify-between">
+            <label htmlFor={`${mode}-${name}-range`} className="flex justify-between">
               {label}: {value}
             </label>
             <ColorRange
-              id={`${state.source}-${name}-range`}
+              id={`${mode}-${name}-range`}
               className="appearance-none mt-1"
               name={name}
               min={min}

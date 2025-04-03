@@ -16,7 +16,7 @@ export default function MainPanel() {
         <TabNavList className="w-full mb-4">
           {pickers.map(({ name, label }) => (
             <TabNavLink active={name === mode1} key={name} asChild className="grow">
-              <Link href={`/${name}`}>
+              <Link href={`/${name}/${mode2 !== name ? mode2 : mode1}`}>
                 {label}
               </Link>
             </TabNavLink>
@@ -28,7 +28,7 @@ export default function MainPanel() {
         <TabNavList className="w-full mb-4">
           {pickers.map(({ name, label }) => (
             <TabNavLink active={name === mode2} key={name} asChild className="grow">
-              <Link href={`/${mode1}/${name}`}>
+              <Link href={`/${mode1 !== name ? mode1 : mode2}/${name}`}>
                 {label}
               </Link>
             </TabNavLink>

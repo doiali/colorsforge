@@ -1,16 +1,24 @@
-import { ColorProvider } from '@/components/color-provider'
 import MainPanel from '@/components/main-panel'
+import { pickerModes } from '@/lib/pickers'
 
-export default async function Home({
-  params,
-}: {
-  params: Promise<{ slug: string[] }>
-}) {
-  const { slug } = await params
-  console.log('slug', slug)
+export const generateStaticParams = async () => {
+  const routes: { slug: string[] }[] = [{ slug: [] }]
+  for (const mode1 of pickerModes) {
+    routes.push({ slug: [mode1] })
+    for (const mode2 of pickerModes) {
+      if (mode1 !== mode2) {
+        routes.push({ slug: [mode1, mode2] })
+      }
+    }
+  }
+  return routes
+}
+
+export const dynamicParams = false
+
+export default async function Home() {
+
   return (
-    <ColorProvider>
-      <MainPanel />
-    </ColorProvider>
+    <MainPanel />
   )
 }
