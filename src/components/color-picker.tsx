@@ -5,26 +5,19 @@ import Color, { Coords } from 'colorjs.io'
 import { SetStateAction } from 'react'
 import { ColorRange } from './ui/color-range'
 
-type ColorState = {
-  color: Color
+type ColorPickerProps = {
+  value: Color
+  onChange: (newColor: SetStateAction<Color>) => void
+  mode: PickerMode
 }
 
-const ColorPicker: React.FC<{
-  state: ColorState,
-  onChange: (newState: SetStateAction<ColorState>) => void,
-  mode: PickerMode
-}> = ({ state, onChange, mode }) => {
-  const { color } = state
+const ColorPicker: React.FC<ColorPickerProps> = ({ value: color, onChange, mode }) => {
   const channels = color.to(mode).coords as Coords
   const handleChange = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
     onChange(prev => {
-      const newCoords = prev.color.to(mode).coords.map((v, i) => (i === index ? +value : v)) as Coords
-      const newColor = new Color(mode, newCoords)
-      return ({
-        color: newColor,
-        source: mode,
-      })
+      const newCoords = prev.to(mode).coords.map((v, i) => (i === index ? +value : v)) as Coords
+      return new Color(mode, newCoords)
     })
   }
 
@@ -69,4 +62,3 @@ const ColorPicker: React.FC<{
 }
 
 export default ColorPicker
-export type { ColorState }

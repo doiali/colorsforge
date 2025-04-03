@@ -7,7 +7,7 @@ import { pickers } from '@/lib/pickers'
 import Link from 'next/link'
 
 export default function MainPanel() {
-  const { state, setState, mode1, mode2 } = useColor()
+  const { color: state, setColor: setState, mode1, mode2 } = useColor()
   return (
     <main className="flex flex-col py-12 container max-w-2xl mx-auto px-4">
       <h1 className="text-4xl font-bold mb-4 text-center">Colorbitz</h1>
@@ -23,7 +23,7 @@ export default function MainPanel() {
           ))}
         </TabNavList>
       </TabNav>
-      <ColorPicker state={state} onChange={setState} mode={mode1} />
+      <ColorPicker value={state} onChange={setState} mode={mode1} />
       <TabNav>
         <TabNavList className="w-full mb-4">
           {pickers.map(({ name, label }) => (
@@ -35,7 +35,7 @@ export default function MainPanel() {
           ))}
         </TabNavList>
       </TabNav>
-      <ColorPicker state={state} onChange={setState} mode={mode2} />
+      <ColorPicker value={state} onChange={setState} mode={mode2} />
 
       <div>
         {/* <div
