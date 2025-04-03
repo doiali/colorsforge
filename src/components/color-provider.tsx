@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState } from 'react'
 import Color from 'colorjs.io'
-import { PickerMode } from '@/lib/pickers'
+import { PickerMode } from '@/components/color-pickers'
 import { useParams } from 'next/navigation'
 
 const defaultColor = new Color('hsl', [300, 100, 50])

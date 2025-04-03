@@ -1,6 +1,5 @@
 export type PickerMode = 'hsl' | 'srgb' | 'lab' | 'lch' | 'xyz' | 'hwb' | 'oklab' | 'oklch' | 'p3'
-export const pickerModes = ['hsl', 'srgb', 'lab', 'lch', 'xyz', 'hwb', 'oklab', 'oklch', 'p3'] as const
-export const pickers: {
+export const colorPickers: {
   name: PickerMode
   label: string
   fields: {

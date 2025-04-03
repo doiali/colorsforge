@@ -3,7 +3,7 @@
 import ColorPicker from '@/components/color-picker'
 import { useColor } from '@/components/color-provider'
 import { TabNav, TabNavLink, TabNavList } from '@/components/ui/tabnav'
-import { pickers } from '@/lib/pickers'
+import { colorPickers } from '@/components/color-pickers'
 import Link from 'next/link'
 
 export default function MainPanel() {
@@ -14,7 +14,7 @@ export default function MainPanel() {
       <p className="text-center text-lg mb-4">Comprehensive color picker and color converter tools for modern color spaces</p>
       <TabNav>
         <TabNavList className="w-full mb-4">
-          {pickers.map(({ name, label }) => (
+          {colorPickers.map(({ name, label }) => (
             <TabNavLink active={name === mode1} key={name} asChild className="grow">
               <Link href={`/${name}/${mode2 !== name ? mode2 : mode1}`}>
                 {label}
@@ -26,7 +26,7 @@ export default function MainPanel() {
       <ColorPicker value={state} onChange={setState} mode={mode1} />
       <TabNav>
         <TabNavList className="w-full mb-4">
-          {pickers.map(({ name, label }) => (
+          {colorPickers.map(({ name, label }) => (
             <TabNavLink active={name === mode2} key={name} asChild className="grow">
               <Link href={`/${mode1 !== name ? mode1 : mode2}/${name}`}>
                 {label}

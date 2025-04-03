@@ -1,6 +1,6 @@
 'use client'
 
-import { PickerMode, pickers } from '@/lib/pickers'
+import { PickerMode, colorPickers } from '@/components/color-pickers'
 import Color, { Coords } from 'colorjs.io'
 import { SetStateAction } from 'react'
 import { ColorRange } from './ui/color-range'
@@ -21,7 +21,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ value: color, onChange, mode 
     })
   }
 
-  const { fields } = pickers.find(p => p.name === mode) ?? {}
+  const { fields } = colorPickers.find(p => p.name === mode) ?? {}
 
   return (
     <div

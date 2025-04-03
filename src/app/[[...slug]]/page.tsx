@@ -1,7 +1,8 @@
 import MainPanel from '@/components/main-panel'
-import { pickerModes } from '@/lib/pickers'
+import { colorPickers } from '@/components/color-pickers'
 
 export const generateStaticParams = async () => {
+  const pickerModes = colorPickers.map(p => p.name)
   const routes: { slug: string[] }[] = [{ slug: [] }]
   for (const mode1 of pickerModes) {
     routes.push({ slug: [mode1] })
