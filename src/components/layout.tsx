@@ -1,6 +1,6 @@
 'use client'
 
-import { geistMono, geistSans } from '@/fonts'
+import ThemeToggle from './theme-toggle'
 
 export default function Layout({
   children,
@@ -8,12 +8,18 @@ export default function Layout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <>
+      {children}
+      < Footer />
+    </>
+  )
+}
+
+const Footer = () => {
+  return (
+    <footer className="flex justify-center items-center py-4 text-sm">
+      <p>Colorsforge © 2025</p>
+      <ThemeToggle />
+    </footer>
   )
 }

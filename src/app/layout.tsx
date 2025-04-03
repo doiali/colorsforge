@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { ColorProvider } from '@/components/color-provider'
 import Layout from '@/components/layout'
+import { ThemeProvider } from '@/components/theme-provider'
+import { geistMono, geistSans } from '@/fonts'
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,10 +16,18 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ColorProvider>
-      <Layout>
-        {children}
-      </Layout>
-    </ColorProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <ThemeProvider>
+          <ColorProvider>
+            <Layout>
+              {children}
+            </Layout>
+          </ColorProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   )
 }
