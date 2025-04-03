@@ -1,4 +1,6 @@
-import { PickerMode, pickerModes, pickers } from '@/lib/utils'
+'use client'
+
+import { PickerMode, pickerModes, pickers } from '@/lib/pickers'
 import Color, { Coords } from 'colorjs.io'
 import { SetStateAction } from 'react'
 import { ColorRange } from './ui/color-range'
