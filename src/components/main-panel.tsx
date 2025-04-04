@@ -10,7 +10,9 @@ export default function MainPanel() {
   const { mode1, mode2 } = useColor()
   return (
     <main className="flex flex-col py-12 max-w-2xl mx-auto px-4">
-      <h1 className="text-4xl font-bold mb-4 text-center">Colorbitz</h1>
+      <h1 className="text-4xl font-bold mb-4 text-center">
+        <Link href="/">Colorbitz</Link>
+      </h1>
       <p className="text-center mb-4">Comprehensive color picker and color converter tools for modern color spaces</p>
       <div className="flex flex-col mb-16">
         <TabNav>
@@ -38,7 +40,7 @@ export default function MainPanel() {
             ))}
           </TabNavList>
         </TabNav>
-        <ColorPicker mode={mode2} />
+        <ColorPicker mode={mode2} hideHex />
       </div>
 
       <div>
