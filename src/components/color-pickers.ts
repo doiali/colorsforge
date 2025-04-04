@@ -14,15 +14,15 @@ export const colorPickers: {
     {
       name: 'srgb', label: 'sRGB', fields: [
         {
-          name: 'r', label: 'Red', min: 0, max: 1, step: 0.01,
+          name: 'r', label: 'Red', min: 0, max: 1, step: 0.001,
           getGradient: (value: number[]) => `linear-gradient(to right, rgb(0, ${value[1] * 255}, ${value[2] * 255}), rgb(255, ${value[1] * 255}, ${value[2] * 255}))`,
         },
         {
-          name: 'g', label: 'Green', min: 0, max: 1, step: 0.01,
+          name: 'g', label: 'Green', min: 0, max: 1, step: 0.001,
           getGradient: (value: number[]) => `linear-gradient(to right, rgb(${value[0] * 255}, 0, ${value[2] * 255}), rgb(${value[0] * 255}, 255, ${value[2] * 255}))`,
         },
         {
-          name: 'b', label: 'Blue', min: 0, max: 1, step: 0.01,
+          name: 'b', label: 'Blue', min: 0, max: 1, step: 0.001,
           getGradient: (value: number[]) => `linear-gradient(to right, rgb(${value[0] * 255}, ${value[1] * 255}, 0), rgb(${value[0] * 255}, ${value[1] * 255}, 255))`,
         },
       ]
@@ -34,11 +34,11 @@ export const colorPickers: {
           getGradient: (value) => `linear-gradient(to right, ${[...Array(361).keys()].map((hue) => `hsl(${hue * 1}, ${value[1]}%, ${value[2]}%)`).join(', ')})`,
         },
         {
-          name: 's', label: 'Saturation', min: 0, max: 100, step: 1,
+          name: 's', label: 'Saturation', min: 0, max: 100, step: 0.1,
           getGradient: (value: number[]) => `linear-gradient(to right, hsl(${value[0]}, 0%, ${value[2]}%), hsl(${value[0]}, 100%, ${value[2]}%))`,
         },
         {
-          name: 'l', label: 'Lightness', min: 0, max: 100, step: 1,
+          name: 'l', label: 'Lightness', min: 0, max: 100, step: 0.1,
           getGradient: (value: number[]) => `linear-gradient(to right, hsl(${value[0]}, ${value[1]}%, 0%), hsl(${value[0]}, ${value[1]}%, 50%), hsl(${value[0]}, ${value[1]}%, 100%))`,
         },
       ]
@@ -50,11 +50,11 @@ export const colorPickers: {
           getGradient: (value) => `linear-gradient(to right, ${[...Array(361).keys()].map((hue) => `hwb(${hue} ${value[1]} ${value[2]})`).join(', ')})`,
         },
         {
-          name: 'w', label: 'Whiteness', min: 0, max: 100, step: 1,
+          name: 'w', label: 'Whiteness', min: 0, max: 100, step: 0.1,
           getGradient: (value: number[]) => `linear-gradient(to right, hwb(${value[0]} 0 ${value[2]}), hwb(${value[0]} 100 ${value[2]}))`,
         },
         {
-          name: 'b', label: 'Blackness', min: 0, max: 100, step: 1,
+          name: 'b', label: 'Blackness', min: 0, max: 100, step: 0.1,
           getGradient: (value: number[]) => `linear-gradient(to right, hwb(${value[0]} ${value[1]} 0), hwb(${value[0]} ${value[1]} 100%))`,
         },
       ]
@@ -62,15 +62,15 @@ export const colorPickers: {
     {
       name: 'lab', label: 'Lab', fields: [
         {
-          name: 'l', label: 'Lightness', min: 0, max: 100, step: 1,
+          name: 'l', label: 'Lightness', min: 0, max: 100, step: 0.1,
           getGradient: (value: number[]) => `linear-gradient(to right, lab(0% ${value[1]} ${value[2]}), lab(100% ${value[1]} ${value[2]}))`,
         },
         {
-          name: 'a', label: 'A', min: -125, max: 125, step: 1,
+          name: 'a', label: 'A', min: -125, max: 125, step: 0.1,
           getGradient: (value: number[]) => `linear-gradient(to right, lab(${value[0]} -125 ${value[2]}), lab(${value[0]} 125 ${value[2]}))`,
         },
         {
-          name: 'b', label: 'B', min: -125, max: 125, step: 1,
+          name: 'b', label: 'B', min: -125, max: 125, step: 0.1,
           getGradient: (value: number[]) => `linear-gradient(to right, lab(${value[0]} ${value[1]} -125), lab(${value[0]} ${value[1]} 125))`,
         },
       ]
@@ -78,15 +78,15 @@ export const colorPickers: {
     {
       name: 'lch', label: 'LCH', fields: [
         {
-          name: 'l', label: 'Lightness', min: 0, max: 100, step: 1,
+          name: 'l', label: 'Lightness', min: 0, max: 100, step: 0.1,
           getGradient: (value: number[]) => `linear-gradient(to right, lch(0% ${value[1]} ${value[2]}), lch(100% ${value[1]} ${value[2]}))`,
         },
         {
-          name: 'c', label: 'Chroma', min: 0, max: 150, step: 1,
+          name: 'c', label: 'Chroma', min: 0, max: 150, step: 0.1,
           getGradient: (value: number[]) => `linear-gradient(to right, lch(${value[0]} 0 ${value[2]}), lch(${value[0]} 150 ${value[2]}))`,
         },
         {
-          name: 'h', label: 'Hue', min: 0, max: 360, step: 1,
+          name: 'h', label: 'Hue', min: 0, max: 360, step: 0.1,
           getGradient: (value) => `linear-gradient(to right, ${[...Array(361).keys()].map((hue) => `lch(${value[0]} ${value[1]} ${hue})`).join(', ')})`,
         },
       ]
@@ -94,11 +94,11 @@ export const colorPickers: {
     {
       name: 'oklch', label: 'OKLCH', fields: [
         {
-          name: 'l', label: 'Lightness', min: 0, max: 1, step: 0.01,
+          name: 'l', label: 'Lightness', min: 0, max: 1, step: 0.001,
           getGradient: (value: number[]) => `linear-gradient(to right, oklch(0 ${value[1]} ${value[2]}), oklch(1 ${value[1]} ${value[2]}))`,
         },
         {
-          name: 'c', label: 'Chroma', min: 0, max: 0.4, step: 0.01,
+          name: 'c', label: 'Chroma', min: 0, max: 0.4, step: 0.001,
           getGradient: (value: number[]) => `linear-gradient(to right, oklch(${value[0]} 0 ${value[2]}), oklch(${value[0]} 0.4 ${value[2]}))`,
         },
         {
@@ -110,15 +110,15 @@ export const colorPickers: {
     {
       name: 'oklab', label: 'OKLab', fields: [
         {
-          name: 'l', label: 'Lightness', min: 0, max: 1, step: 0.01,
+          name: 'l', label: 'Lightness', min: 0, max: 1, step: 0.001,
           getGradient: (value: number[]) => `linear-gradient(to right, oklab(0 ${value[1]} ${value[2]}), oklab(1 ${value[1]} ${value[2]}))`,
         },
         {
-          name: 'a', label: 'A', min: -0.4, max: 0.4, step: 0.01,
+          name: 'a', label: 'A', min: -0.4, max: 0.4, step: 0.001,
           getGradient: (value: number[]) => `linear-gradient(to right, oklab(${value[0]} -0.4 ${value[2]}), oklab(${value[0]} 0.4 ${value[2]}))`,
         },
         {
-          name: 'b', label: 'B', min: -0.4, max: 0.4, step: 0.01,
+          name: 'b', label: 'B', min: -0.4, max: 0.4, step: 0.001,
           getGradient: (value: number[]) => `linear-gradient(to right, oklab(${value[0]} ${value[1]} -0.4), oklab(${value[0]} ${value[1]} 0.4))`,
         },
       ]
@@ -142,15 +142,15 @@ export const colorPickers: {
     {
       name: 'p3', label: 'Display P3', fields: [
         {
-          name: 'r', label: 'Red', min: 0, max: 1, step: 0.01,
+          name: 'r', label: 'Red', min: 0, max: 1, step: 0.001,
           getGradient: (value: number[]) => `linear-gradient(to right, color(display-p3 0 ${value[1]} ${value[2]}), color(display-p3 1 ${value[1]} ${value[2]}))`,
         },
         {
-          name: 'g', label: 'Green', min: 0, max: 1, step: 0.01,
+          name: 'g', label: 'Green', min: 0, max: 1, step: 0.001,
           getGradient: (value: number[]) => `linear-gradient(to right, color(display-p3 ${value[0]} 0 ${value[2]}), color(display-p3 ${value[0]} 1 ${value[2]}))`,
         },
         {
-          name: 'b', label: 'Blue', min: 0, max: 1, step: 0.01,
+          name: 'b', label: 'Blue', min: 0, max: 1, step: 0.001,
           getGradient: (value: number[]) => `linear-gradient(to right, color(display-p3 ${value[0]} ${value[1]} 0), color(display-p3 ${value[0]} ${value[1]} 1))`,
         },
       ]
