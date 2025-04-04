@@ -9,14 +9,14 @@ import Link from 'next/link'
 export default function MainPanel() {
   const { mode1, mode2 } = useColor()
   return (
-    <main className="flex flex-col py-12 max-w-2xl mx-auto px-4">
+    <main className="flex flex-col py-12 max-w-2xl mx-auto px-2">
       <h1 className="text-4xl font-bold mb-4 text-center">
         <Link href="/">Colorbitz</Link>
       </h1>
-      <p className="text-center mb-4">Comprehensive color picker and color converter tools for modern color spaces</p>
-      <div className="flex flex-col mb-16">
+      <p className="text-center mb-8">Comprehensive color picker and color converter tools for modern color spaces</p>
+      <div className="flex flex-col mb-12">
         <TabNav>
-          <TabNavList className="w-full mb-4">
+          <TabNavList className="w-full mb-2 overflow-x-auto overflow-y-hidden ">
             {colorPickers.map(({ name, label }) => (
               <TabNavLink active={name === mode1} key={name} asChild className="grow">
                 <Link href={`/${name}/${mode2 !== name ? mode2 : mode1}`}>
@@ -30,7 +30,7 @@ export default function MainPanel() {
       </div>
       <div className="flex flex-col">
         <TabNav>
-          <TabNavList className="w-full mb-4">
+          <TabNavList className="w-full mb-2">
             {colorPickers.map(({ name, label }) => (
               <TabNavLink active={name === mode2} key={name} asChild className="grow">
                 <Link href={`/${mode1 !== name ? mode1 : mode2}/${name}`}>

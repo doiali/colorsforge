@@ -6,6 +6,7 @@ import { ColorRange } from './ui/color-range'
 import { useColor } from './color-provider'
 import { Input } from './ui/input'
 import ColorInput from './color-input'
+import clsx from 'clsx'
 
 type ColorPickerProps = {
   mode: PickerMode
@@ -28,10 +29,13 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ mode, hideHex }) => {
   return (
     <div className="flex flex-col gap-2 md:flex-row md:gap-4">
       <div
-        className="flex flex-col w-full gap-2 md:w-26"
+        className={clsx(
+          "flex flex-col w-full gap-2 md:w-26",
+          { "h-26 md:h-auto": !hideHex },
+        )}
       >
         {!hideHex && <>
-          <div className="grow rounded-lg shadow-md"
+          <div className="grow rounded-lg shadow-range"
             style={{
               backgroundColor: color.toString(),
             }}
@@ -54,18 +58,9 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ mode, hideHex }) => {
 
           return (
             <div key={name} className="flex items-center gap-2">
-              <label title={label} htmlFor={`${mode}-${name}-range`} className="w-4 shrink-0">
+              <label title={label} htmlFor={`${mode}-${name}-range`} className="w-4 shrink-0 hidden sm:inline-block">
                 {name}:
               </label>
-              {/* <div
-              className="absolute top-0 bottom-0"
-              style={{
-                left: `${validMin * 100}%`,
-                right: `${100 - validMax * 100}%`,
-                borderLeft: '2px solid red',
-                borderRight: '2px solid red',
-              }}
-            /> */}
               <ColorRange
                 id={`${mode}-${name}-range`}
                 className="appearance-none"
@@ -82,7 +77,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ mode, hideHex }) => {
               <Input
                 id={`${mode}-${name}-input`}
                 type="number"
-                className="w-20 h-7 ps-2 pe-0 invalid:bg-red-500/50 dark:invalid:bg-red-500/10 invalid:text-red-500"
+                className="w-20 h-7 ps-2 pe-0 shadow-color-input invalid:bg-red-500/50 dark:invalid:bg-red-500/10 invalid:text-red-500"
                 name={name}
                 min={min}
                 max={max}
@@ -96,7 +91,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ mode, hideHex }) => {
         })}
         <ColorInput mode={mode} name={name} />
       </div>
-    </div>
+    </div >
   )
 }
 

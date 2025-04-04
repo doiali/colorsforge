@@ -20,7 +20,7 @@ export default function Layout({
 
 const Footer = () => {
   return (
-    <footer className="pb-4 text-sm gap-2 flex flex-col items-center mx-auto max-w-2xl px-4">
+    <footer className="pb-4 text-sm gap-2 flex flex-col items-center mx-auto max-w-2xl px-2">
       <hr className="w-full mb-2" />
       <p className="flex items-center gap-4">Created with love by <a className="inline-flex items-center gap-1" href='https://x.com/doiali' target='_blank'>
         <FaXTwitter className="inline-flex" />

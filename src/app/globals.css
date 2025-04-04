@@ -41,6 +41,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --shadow-range: color-mix(in oklab, var(--foreground) 40%, transparent) 0 1px 2px inset, color-mix(in oklab, var(--background) 10%, transparent) 0 0px 0px 1px;
+  --shadow-color-input: color-mix(in oklab, var(--foreground) 40%, transparent) 0 1px 2px inset, color-mix(in oklab, var(--background) 10%, transparent) 0 0px 0px 1px;
 }
 
 :root {
@@ -79,8 +81,8 @@
 }
 
 .dark {
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
+  --background: oklch(0.21 0.01 0.75);
+  --foreground: oklch(0.95 0 0);
   --card: oklch(0.21 0.006 285.885);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.21 0.006 285.885);
@@ -118,6 +120,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
   }
 }

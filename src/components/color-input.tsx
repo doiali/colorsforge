@@ -71,7 +71,7 @@ const ColorInput: React.FC<{ mode?: PickerMode } & React.ComponentProps<"input">
       onBlur={handleInputBlur}
       onSubmit={handleInputBlur}
       className={cn(
-        "w-full text-center",
+        "w-full text-center shadow-color-input",
         { 'bg-red-500/10 dark:bg-red-500/10 text-red-500': error },
         className,
       )}

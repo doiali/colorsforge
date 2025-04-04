@@ -140,7 +140,7 @@ export const colorPickers: {
       ]
     },
     {
-      name: 'p3', label: 'Display P3', fields: [
+      name: 'p3', label: 'P3', fields: [
         {
           name: 'r', label: 'Red', min: 0, max: 1, step: 0.001,
           getGradient: (value: number[]) => `linear-gradient(to right, color(display-p3 0 ${value[1]} ${value[2]}), color(display-p3 1 ${value[1]} ${value[2]}))`,
