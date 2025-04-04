@@ -39,7 +39,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ value: color, onChange, mode 
         return (
           <div key={name} className="mb-4">
             <label htmlFor={`${mode}-${name}-range`} className="flex justify-between">
-              {label}: {value}
+              {label}: {Math.round(value / step) / (1 / step)}
             </label>
             <ColorRange
               id={`${mode}-${name}-range`}
