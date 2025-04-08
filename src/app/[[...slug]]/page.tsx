@@ -2,6 +2,23 @@ import { colorPickers, PickerMode } from '@/components/color-pickers'
 import MainPanel from '@/components/main-panel'
 import { notFound } from 'next/navigation'
 
+
+export const generateMetadata = async ({ params }: { params: { slug: PickerMode[] } }) => {
+  const { slug = [] } = params
+  const [mode1, mode2] = slug
+  if (!pickerModes.includes(mode1)) return {}
+
+  const title = `ColorsForge - ${mode1.toUpperCase()} Color Picker`
+  const description = pickerModes.includes(mode2)
+    ? `Pick ${mode1.toUpperCase()} color. Convert ${mode1.toUpperCase()} to ${mode2.toUpperCase()} and vice versa.`
+    : `Pick ${mode1.toUpperCase()} color.`
+
+  return {
+    title,
+    description,
+  }
+}
+
 const pickerModes = colorPickers.map(({ name }) => name)
 
 export const generateStaticParams = async () => {
