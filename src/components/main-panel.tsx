@@ -8,13 +8,15 @@ import Link from 'next/link'
 
 export default function MainPanel() {
   const { mode1, mode2 } = useColor()
+  const field1 = colorPickers.find(({ name }) => name === mode1)
+  const field2 = colorPickers.find(({ name }) => name === mode2)
   return (
     <main className="flex flex-col py-12 max-w-2xl mx-auto px-2">
       <h1 className="text-4xl font-bold mb-4 text-center">
-        <Link href="/">Colorbitz</Link>
+        <Link href="/">ColorsForge</Link>
       </h1>
       <p className="text-center mb-8">Comprehensive color picker and color converter tools for modern color spaces</p>
-      <div className="flex flex-col mb-12">
+      <div className="flex flex-col">
         <TabNav>
           <TabNavList className="w-full mb-2 overflow-x-auto overflow-y-hidden ">
             {colorPickers.map(({ name, label }) => (
@@ -28,6 +30,9 @@ export default function MainPanel() {
         </TabNav>
         <ColorPicker mode={mode1} />
       </div>
+      <p className="my-9 text-center text-lg">
+        Convert <b>{field1?.label}</b> to <b>{field2?.label}</b>:
+      </p>
       <div className="flex flex-col">
         <TabNav>
           <TabNavList className="w-full mb-2">
@@ -41,19 +46,6 @@ export default function MainPanel() {
           </TabNavList>
         </TabNav>
         <ColorPicker mode={mode2} hideHex />
-      </div>
-
-      <div>
-        {/* <div
-          style={{ backgroundColor: color.toString({ format: 'hex', collapse: false }) }}
-          className="mt-4 space-y-2 text-center rounded p-4 py-8 flex justify-center items-center"
-        >
-          <div className="bg-background/80 rounded px-4">
-            <p><strong>RGB:</strong> {color.to('srgb').toString({ precision: 0 })}</p>
-            <p><strong>HSL:</strong> {color.to('hsl').toString({ precision: 0 })}</p>
-            <p><strong>Hex:</strong> {color.toString({ format: 'hex', collapse: false })}</p>
-          </div>
-        </div> */}
       </div>
     </main>
   )
