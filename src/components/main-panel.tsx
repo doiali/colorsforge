@@ -15,7 +15,8 @@ export default function MainPanel() {
       <h1 className="text-4xl font-bold mb-4 text-center">
         <Link href="/">ColorsForge</Link>
       </h1>
-      <p className="text-center mb-8">Comprehensive color picker and color converter tools for modern color spaces</p>
+      <h2 className="text-center mb-8">Comprehensive color picker and color converter tools for modern color spaces</h2>
+      <h3 className="sr-only">{field1?.label} color picker</h3>
       <div className="flex flex-col">
         <TabNav>
           <TabNavList className="w-full mb-2 overflow-x-auto overflow-y-hidden ">
@@ -33,6 +34,7 @@ export default function MainPanel() {
       <p className="my-9 text-center text-lg">
         Convert <b>{field1?.label}</b> to <b>{field2?.label}</b>:
       </p>
+      <h3 className="sr-only">{field2?.label} color picker</h3>
       <div className="flex flex-col">
         <TabNav>
           <TabNavList className="w-full mb-2">
