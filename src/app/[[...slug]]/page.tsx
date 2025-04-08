@@ -3,8 +3,8 @@ import MainPanel from '@/components/main-panel'
 import { notFound } from 'next/navigation'
 
 
-export const generateMetadata = async ({ params }: { params: { slug: PickerMode[] } }) => {
-  const { slug = [] } = params
+export const generateMetadata = async ({ params }: { params: Promise<{ slug: PickerMode[] }> }) => {
+  const { slug = [] } = await params
   const [mode1, mode2] = slug
   if (!pickerModes.includes(mode1)) return {}
 

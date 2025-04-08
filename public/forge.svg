@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  className="text-foreground border" viewBox='0 0 300 300' width="300px" height="300px"
+  strokeLinecap='round' strokeLinejoin='round'>
+  <defs>
+    <linearGradient id="rainbow-gradient" x1="0%" y1="0%" x2="-30%" y2="90%">
+      <stop offset="0%" stop-color="hsl(0, 100%, 50%)" />
+      <stop offset="14.29%" stop-color="hsl(51, 100%, 50%)" />
+      <stop offset="28.57%" stop-color="hsl(102, 100%, 50%)" />
+      <stop offset="42.86%" stop-color="hsl(153, 100%, 50%)" />
+      <stop offset="57.14%" stop-color="hsl(204, 100%, 50%)" />
+      <stop offset="71.43%" stop-color="hsl(255, 100%, 50%)" />
+      <stop offset="85.71%" stop-color="hsl(306, 100%, 50%)" />
+      <stop offset="100%" stop-color="hsl(357, 100%, 50%)" />
+    </linearGradient>
+  </defs>
+  <path d="M130 170 h40 l 20 40 h 55 l -55 -120 h-20 l-10 -25 h-20 l-10 25 h-20 l -55 120 h55 z"
+    stroke-width="2" stroke="currentColor" fill="url(#rainbow-gradient)" />
+</svg>
