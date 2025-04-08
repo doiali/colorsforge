@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "ColorsForge",
     images: [
       {
-        url: "https://colorsforge.com/og-image.jpg",
+        url: "/colorsforge.png",
         width: 1200,
         height: 630,
         alt: "ColorsForge - Craft Modern Colors",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ColorsForge - Craft Modern Colors",
     description: "Craft colors with love! RGB, HSL, OKLCH, OKLab, forge in modern CSS color spaces.",
-    images: ["https://colorsforge.com/og-image.jpg"],
+    images: ["/colorsforge.png"],
   },
   viewport: "width=device-width, initial-scale=1.0",
   robots: {
