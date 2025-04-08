@@ -30,7 +30,7 @@ const Footer = () => {
         <span>Colorsforge © 2025</span>
         <span className="mx-2">|</span>
         <Button asChild variant="ghost" size="icon">
-          <a href='https://github.com/doiali' target='_blank'>
+          <a href='https://github.com/doiali/colorsforge' target='_blank'>
             <span className="sr-only">GitHub</span>
             <FaGithub className="inline-flex" />
           </a>
