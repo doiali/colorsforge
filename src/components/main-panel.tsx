@@ -5,6 +5,7 @@ import { useColor } from '@/components/color-provider'
 import { TabNav, TabNavLink, TabNavList } from '@/components/ui/tabnav'
 import { colorPickers } from '@/components/color-pickers'
 import Link from 'next/link'
+import { ReactNode } from 'react'
 
 export default function MainPanel() {
   const { mode1, mode2 } = useColor()
@@ -49,6 +50,21 @@ export default function MainPanel() {
         </TabNav>
         <ColorPicker mode={mode2} hideHex />
       </div>
+      <div className="mt-12 text-center">
+        <h3 className="font-bold text-lg mb-4">Attributions</h3>
+        <p className="">
+          Thanks to <ExternalLink href="https://vercel.com">Vecel</ExternalLink> for hosting and their support of open source software.
+        </p>
+        <p>Thanks to <ExternalLink href='https://colorjs.io/'>colorjs</ExternalLink> for their amazing package.</p>
+        <p>Inspired by: {' '}
+          <ExternalLink href="https://hslpicker.com/">hslpicker.com</ExternalLink>, {' '}
+          <ExternalLink href="https://oklch.com/">oklch.com</ExternalLink>
+        </p>
+      </div>
     </main>
   )
+}
+
+const ExternalLink = ({ children, href }: { children: ReactNode, href: string }) => {
+  return <a className="text-blue-500" href={href} target="_blank">{children}</a>
 }
