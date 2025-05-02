@@ -1,7 +1,7 @@
 import { colorPickers, PickerMode } from '@/components/color-pickers'
+import { defaultMode1, defaultMode2 } from '@/components/color-provider'
 import MainPanel from '@/components/main-panel'
 import { notFound } from 'next/navigation'
-
 
 export const generateMetadata = async ({ params }: { params: Promise<{ slug: PickerMode[] }> }) => {
   const { slug = [] } = await params
@@ -42,7 +42,7 @@ export default async function Home({
   params: Promise<{ slug: PickerMode[] }>
 }) {
   const { slug = [] } = await params
-  const [mode1 = 'hsl', mode2 = 'srgb'] = slug
+  const [mode1 = defaultMode1, mode2 = defaultMode2] = slug
   const isValid = pickerModes.includes(mode1) && pickerModes.includes(mode2)
   if (!isValid)
     return notFound()

@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   description: "Craft colors with love! RGB, HSL, OKLCH, OKLab, forge in modern CSS color spaces.",
   keywords: [
     "Colors Forge",
+    "ColorsForge",
     "color picker",
     "color converter",
     "color selector",
