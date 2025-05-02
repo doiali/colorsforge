@@ -1,21 +1,32 @@
 import { colorPickers, PickerMode } from '@/components/color-pickers'
 import { defaultMode1, defaultMode2 } from '@/components/color-provider'
 import MainPanel from '@/components/main-panel'
+import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-export const generateMetadata = async ({ params }: { params: Promise<{ slug: PickerMode[] }> }) => {
+export const generateMetadata: (data: {
+  params: Promise<{ slug: PickerMode[] }>
+}) => Promise<Metadata> = async ({ params }) => {
   const { slug = [] } = await params
   const [mode1, mode2] = slug
-  if (!pickerModes.includes(mode1)) return {}
+  if (!pickerModes.includes(mode1)) return {
+    alternates: {
+      canonical: `https://colorsforge.com`,
+    }
+  }
 
   const title = `ColorsForge - ${mode1.toUpperCase()} Color Picker`
   const description = pickerModes.includes(mode2)
     ? `Pick ${mode1.toUpperCase()} color. Convert ${mode1.toUpperCase()} to ${mode2.toUpperCase()} and vice versa.`
     : `Pick ${mode1.toUpperCase()} color.`
+  const canonicalUrl = `https://colorsforge.com/${mode1}${mode2 ? '/' + mode2 : ''}`
 
   return {
     title,
     description,
+    alternates: {
+      canonical: canonicalUrl,
+    }
   }
 }
 
