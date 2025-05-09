@@ -4,9 +4,7 @@ import React, { createContext, useContext, useState } from 'react'
 import Color from 'colorjs.io'
 import { colorPickers, PickerMode } from '@/components/color-pickers'
 import { useParams } from 'next/navigation'
-
-export const defaultMode1 = 'hsl'
-export const defaultMode2 = 'srgb'
+import { defaultMode1, defaultMode2 } from '@/constants'
 
 const defaultColor = new Color('hsl', [300, 100, 50])
 

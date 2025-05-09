@@ -1,6 +1,6 @@
 import { colorPickers, PickerMode } from '@/components/color-pickers'
-import { defaultMode1, defaultMode2 } from '@/components/color-provider'
 import MainPanel from '@/components/main-panel'
+import { defaultMode1, defaultMode2 } from '@/constants'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
